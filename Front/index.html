@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Front aula 10/08</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="shortcut icon" href="./src/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div id="conteiner">
+      <div class="lista">
+        <h3>1. Listar Voos</h3>
+        <h3>2. Comprar passagens</h3>
+        <h3>3. Verificar Passagem</h3>
+        <h3>4. Sair</h3>
+        <input type="number" name="opcao" id="opcao" /><br />
+        <input type="button" value="Botão" onclick="clicou()" id="botao" />
+      </div>
+    </div>
+
+    <div>
+      <form id="comprarForm">
+        <label for="origem">Origem:</label>
+        <input type="text" id="origem" name="origem" required><br><br>
+
+        <label for="origem">Destino:</label>
+        <input type="text" id="destino" name="destino" required><br><br>
+
+        <label for="data">Data:</label>
+        <input type="date" id="data" name="data" required><br><br>
+
+        <label for="quantidade">Quantidade de Passagens:</label>
+        <input type="number" id="quantidade" name="quantidade" required><br><br>
+
+        <input type="submit" value="Comprar Passagem">
+      </form>
+    </div>
+    <br><br><br><br><br><br><br>
+    <div>
+      <form id="checarForm">
+        <label for="origem">Id:</label>
+        <input type="number" id="vooId" name="vooId" required><span>      </span><label for="origem">Nome do Passageiro:</label>
+        <input type="text" id="passageiro" name="passageiro" required><br><br>
+
+        <input type="submit" value="Checar Passagem">
+      </form>
+    </div>
+    
+
+    <script>
+          var elemento = document.getElementById("meuElemento");
+
+          var botao = document.getElementById('botao')
+          botao.addEventListener('mouseover', function () {
+            botao.style.backgroundColor = "rgb(81, 169, 182)"
+          });
+
+          var botao = document.getElementById('botao')
+          botao.addEventListener('mouseout', function () {
+            botao.style.backgroundColor = "white"
+          });
+
+          function clicou() {
+            var opcao = window.document.getElementById('opcao')
+
+            switch (opcao.value)
+                  {
+                      case '1':
+                          ListarVoos();
+                          break;
+                      case '2':
+                          ComprarPassagens();
+                          break;
+                      case '3':
+                          VerificarPassagem();
+                          break;
+                      case '4':
+                          Sair()
+                          return;
+                  }
+          }
+          function ListarVoos() {
+            fetch("http://localhost:5275/app/voos")
+                    .then(response => response.json())
+                    .then(data => {
+                      console.log(data);
+                    })
+                    .catch(error => {
+                      console.error("Erro na requisição:", error);
+                    });
+          }
+          function ComprarPassagens() {
+            console.log("Você comprou sua passagem");
+          }
+          function VerificarPassagem() {
+            console.log("Verificando Passagens");
+          }
+          function Sair() {
+            var lista = document.querySelector(".lista");
+            lista.innerHTML = "";
+            lista.innerHTML = "<h1>Obrigado pela contribuição!<h1>"
+          }
+
+          document.getElementById("comprarForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            var origem = document.getElementById("origem").value;
+            var destino = document.getElementById("destino").value;
+            var data = document.getElementById("data").value;
+            var quantidade = document.getElementById("quantidade").value;
+            
+            var dataToSend = {
+              origem: origem,
+              destino: destino,
+              data: data,
+              quantidade: quantidade
+            };
+            
+            fetch("http://localhost:5275/app/voos", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(dataToSend)
+            })
+                    .then(response => response.json())
+                    .then(data => {
+                      console.log(data);
+                    })
+                    .catch(error => {
+                      console.error("Error al enviar los datos:", error);
+                    });
+          });
+
+          document.getElementById("checarForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var vooId = document.getElementById("vooId").value;
+            var passageiro = document.getElementById("passageiro").value;
+            
+            fetch(`http://localhost:5275/app/voos/${vooId}?nomeDoPassageiro=${passageiro}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+            })
+                    .then(response => response.json())
+                    .then(data => {
+                      console.log(data);
+                    })
+                    .catch(error => {
+                      console.error("Error al enviar los datos:", error);
+                    });
+          });
+          </script>
+  </body>
+</html>

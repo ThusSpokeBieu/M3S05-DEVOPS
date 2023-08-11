@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flight.Domain", "Flight.Domain\Flight.Domain.csproj", "{E27A41D9-CE10-4BBA-B525-F74FBC901989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flight.Application", "Flight.Application\Flight.Application.csproj", "{785E36E6-71CC-461C-9E9E-BC02CF6820D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E27A41D9-CE10-4BBA-B525-F74FBC901989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E27A41D9-CE10-4BBA-B525-F74FBC901989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E27A41D9-CE10-4BBA-B525-F74FBC901989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E27A41D9-CE10-4BBA-B525-F74FBC901989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785E36E6-71CC-461C-9E9E-BC02CF6820D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785E36E6-71CC-461C-9E9E-BC02CF6820D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785E36E6-71CC-461C-9E9E-BC02CF6820D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785E36E6-71CC-461C-9E9E-BC02CF6820D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
